@@ -1,5 +1,5 @@
 clear all; close all; clc;
-%Yale Faces 
+%%Read the images and save as a matrix
 %{
 directory = dir('*.*');
 for k=8:length(directory)
@@ -37,7 +37,6 @@ testFaceMS = testFace - avgFace;
 
 %Plots
 figure(2)
-
 ranks = [10,50,100,150,152];
 subplot(3,2,1)
 imagesc(reshape(testFaceMS,n,m)), colormap gray

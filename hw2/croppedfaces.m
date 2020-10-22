@@ -1,5 +1,5 @@
 clear all; close all; clc;
-%Yale Faces 
+%Read the images and save as a matrix
 %{
 directory = dir('*.*');
 for k=8:length(directory)
@@ -21,7 +21,6 @@ avgFace = mean(trainingFaces,2); % size n*m by 1;
 % compute eigenfaces on mean-subtracted training data
 X = trainingFaces-avgFace*ones(1,size(trainingFaces,2));
 [U,S,V] = svd(X,'econ'); 
-save ('eigenfaces.mat','U','S','V','X','trainingFaces','avgFace');
 sig=diag(S);
 energy1=sig(1)/sum(sig)
 energy3=sum(sig(1:3))/sum(sig)
@@ -39,7 +38,6 @@ for j=1:3 % plot the first 3 eigenfaces
     imagesc(reshape(U(:,j),n,m)); colormap gray;
 end
 
-%load faces.mat;
 faces = vector;
 testFace = faces(:,end-63); % last image out 
 testFaceMS = testFace - avgFace;
